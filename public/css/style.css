@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+html,
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #e0c6ad;
+}
+
+.custom-color {
+  background-color: #08475e;
+  border-color: #08475e;
+  color: aliceblue;
+}
+
+.btn-custom {
+  background-color: #08475e;
+  color :white;
+}
+
+.btn-custom:hover {
+  background-color: white;
+  border-color: none;
+}
+
+#map {
+  height: 400px;
+}
+
+.parent {
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "main main main"
+    "footer footer footer";
+  width: 100%; /* Assure que le conteneur prenne toute la largeur */
+}
+
+.child {
+  width: 100%; /* Assure que chaque enfant prenne toute la largeur */
+  height: 100%; /* Tu peux ajuster cela selon tes besoins */
+}
+
+.child:nth-child(1) {
+  grid-area: header;
+  background-color: #08475e;
+  text-align: center;
+  padding: 20px;
+}
+
+.child:nth-child(2) {
+  grid-area: main;
+  background-color: #e0c6ad;
+}
+
+.card-custom {
+  width: 100%;
+  max-width: 500px; /* Ou une autre valeur souhaitée */
+}
+
+
+.top-right {
+    position: absolute;
+    top: 10px; /* Ajustez la distance du haut */
+    right: 10px; /* Ajustez la distance de la droite */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.address-suggestion {
+  cursor: pointer;
+  background-color: #ffffff;
+  list-style: none;
+}

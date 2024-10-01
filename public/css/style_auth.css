@@ -1,0 +1,50 @@
+body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            background-image: 
+            radial-gradient(300px circle at 0% 0%,
+                hsl(218, 41%, 35%) 15%,
+                hsl(218, 41%, 30%) 35%,
+                hsl(218, 41%, 25%) 75%,
+                hsl(218, 41%, 20%) 80%,
+                hsl(218, 41%, 15%) 100%),
+            radial-gradient(600px circle at 100% 100%,
+                hsl(218, 41%, 45%) 15%,
+                hsl(218, 41%, 35%) 35%,
+                hsl(218, 41%, 30%) 75%,
+                hsl(218, 41%, 25%) 80%,
+                hsl(218, 41%, 20%) 100%);        
+        }
+
+
+        #radius-shape-2 {
+            border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+            height: 220px;
+            width: 220px;
+            top: -60px;
+            left: -100px;
+            background: radial-gradient(#1775BA, #00ABED);
+            overflow: hidden;
+        }
+
+        
+
+@media (max-width: 768px) {
+    .form_connexion_inscription {
+        width: 100%;
+        padding: 10px;
+    }
+    #radius-shape-2 {
+        top: 0;
+        left: 0;
+        height: 150px;
+        width: 150px;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+        

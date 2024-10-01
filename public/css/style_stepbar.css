@@ -1,0 +1,58 @@
+/* Style pour les étapes */
+.step {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .step .step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step .step-item .step-number {
+    background-color: #e9ecef;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #495057;
+    transition: background-color 0.4s, color 0.4s;
+  }
+
+  .step .step-item.active .step-number {
+    background-color: #0d6efd;
+    color: white;
+  }
+
+  .step .step-item.completed .step-number {
+    background-color: #198754;
+    color: white;
+  }
+
+  .step .step-line {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #e9ecef;
+    z-index: 0;
+    transition: background-color 0.4s;
+  }
+
+  .step .step-line.completed {
+    background-color: #198754;
+  }
+
+  /* Transition fluide sur la progression */
+  .step .step-line.active {
+    background-color: #0d6efd;
+  }

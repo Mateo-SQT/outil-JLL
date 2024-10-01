@@ -1,0 +1,12 @@
+.drop-zone {
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px 0;
+}
+.drop-zone.hover {
+    border-color: #0056b3;
+    background-color: #f8f9fa;
+}
