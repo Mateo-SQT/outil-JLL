@@ -166,6 +166,7 @@ if (isset($_POST['modifier']) && $user_found) {
                                                     <div class="col-md-6">
                                                         <label id="nombre_json" for="nombre_json" class="form-label">Nombre de téléchargement de data.json : </label>
                                                         <label id="nombre_shapefile" for="nombre_shapefile" class="form-label">Nombre de téléchargement de shapefile : </label>
+                                                        <ul id="file-list" class="list-group"></ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,22 +180,22 @@ if (isset($_POST['modifier']) && $user_found) {
                         </div>
 
                         <div class="col-12">
-                            <div class="container-custom-2  text-center position-relative d-flex justify-content-center align-items-center">
+                            <div class="container-custom-2 text-center position-relative d-flex justify-content-center align-items-center">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-md-6 mb-4">
                                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="form_connexion_inscription text-left m-0 p-3" id="form-search" style="background: white;">
                                             <h4 class="text-center p-2">Consulter tous les utilisateurs</h4>
                                             <button type="submit" class="btn btn-primary btn-block mb-3" value="Afficher" name="Afficher">Afficher</button>
                                         </form>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-md-6">
                                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="form_connexion_inscription text-left m-0 p-3" id="form-modify" style="background: white;">
                                             <h4 class="text-center">Modifier un utilisateur</h4>
                                             <div class="my-3">
                                                 <label for="searchName" class="form-label">Saisir son nom :</label>
-                                                <div class="d-flex align-items-center">
-                                                    <input type="text" class="form-control me-2" id="searchName" name="searchName" placeholder="le nom" required>
-                                                    <button type="submit" class="btn btn-primary mx-1" value="Rechercher" name="Rechercher">Rechercher</button>
+                                                <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                    <input type="text" class="form-control me-2 mb-2 mb-sm-0" id="searchName" name="searchName" placeholder="le nom" required>
+                                                    <button type="submit" class="btn btn-primary" value="Rechercher" name="Rechercher">Rechercher</button>
                                                 </div>
                                             </div>
                                             <?php if ($user_to_modify): ?>
@@ -216,43 +217,47 @@ if (isset($_POST['modifier']) && $user_found) {
                             </div>
                         </div>
 
+
                         <?php if (isset($_POST['Afficher'])): ?>
-                        <div class="col-12 mt-4">
-                            <div class="card card-utilisateur">
-                                <div class="card-header">
-                                    <h4 class="text-center">Les utilisateurs :</h4>
-                                </div>
-                                <div class="card-body">
-                                    <?php if (!empty($users)): ?>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nom</th>
-                                                    <th>Email</th>
-                                                    <th>Rôle</th>
-                                                    <th>Nombre de connexions</th>
-                                                    <th>Création du compte</th> 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($users as $user): ?>
-                                                    <tr>
-                                                        <td><?php echo htmlspecialchars($user['name']); ?></td>
-                                                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                                                        <td><?php echo htmlspecialchars($user['role_name'] ?? 'Non spécifié'); ?></td>
-                                                        <td><?php echo htmlspecialchars($user['nombre_connexions']); ?></td>
-                                                        <td><?php echo htmlspecialchars($user['date_creation']); ?></td> 
-                                                    </tr>
-                                                <?php endforeach; ?>                                               
-                                            </tbody>
-                                        </table>
-                                        <button class="btn btn-custom" onclick="fermerCarte()">Fermer</button>
-                                    <?php else: ?>
-                                        <p class="text-center">Aucun utilisateur trouvé.</p>
-                                    <?php endif; ?>
+                            <div class="col-12 mt-4">
+                                <div class="card card-utilisateur">
+                                    <div class="card-header">
+                                        <h4 class="text-center">Les utilisateurs :</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <?php if (!empty($users)): ?>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nom</th>
+                                                            <th>Email</th>
+                                                            <th>Rôle</th>
+                                                            <th>Nombre de connexions</th>
+                                                            <th>Création du compte</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($users as $user): ?>
+                                                            <tr>
+                                                                <td><?php echo htmlspecialchars($user['name']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['email']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['role_name'] ?? 'Non spécifié'); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['nombre_connexions']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['date_creation']); ?></td> 
+                                                            </tr>
+                                                        <?php endforeach; ?>                                               
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button class="btn btn-custom" onclick="fermerCarte()">Fermer</button>
+                                        <?php else: ?>
+                                            <p class="text-center">Aucun utilisateur trouvé.</p>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
                         <?php endif; ?>
 
                         <?php if ($message): ?>
@@ -281,33 +286,25 @@ if (isset($_POST['modifier']) && $user_found) {
                 return true;
             }
         }
-        
+
         function fermerCarte() {
             const carte = document.querySelector('.card-utilisateur');
             carte.style.display = 'none'; // Ou utilise une animation pour la fermer
         }
 
-        async function fetchData() {
-            const response = await fetch('/api/fichiers');
-            const data = await response.json();
-            const nombreJsonLabel = document.querySelector('#nombre_json');
-            const nombreShapefileLabel = document.querySelector('#nombre_shapefile');
-
-            // Met à jour le contenu des labels avec les données récupérées
-            const jsonFile = data.jsonFiles.find(file => file.type_fichier === 'data.json');
-            const shapefile = data.shapefiles.find(file => file.type_fichier === 'Shapefile');
-
-            if (jsonFile) {
-                nombreJsonLabel.innerHTML = `Nombre de téléchargement de data.json : ${jsonFile.nombre_telechargements} téléchargements`;
-            }
-
-            if (shapefile) {
-                nombreShapefileLabel.innerHTML = `Nombre de téléchargement de shapefile : ${shapefile.nombre_telechargements} téléchargements`;
-            }
-        }
-        fetchData();
-
-
+        // Récupérer les données depuis le serveur
+        fetch('/api/files')
+            .then(response => response.json())
+            .then(data => {
+                const fileList = document.getElementById('file-list');
+                data.forEach(fichier => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = `${fichier.nom} : ${fichier.nombre}`;
+                    fileList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Erreur:', error));
 
 
     </script>

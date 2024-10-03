@@ -25,12 +25,12 @@ if (isset($_POST['button_con'])) {
     // Extraire les infos du formulaire
     extract($_POST);
     
-    // Vérifions si les champs sont vides
+    // Vérifier si les champs sont vides
     if (!empty($email) && !empty($mdp1)) {
-        // Vérifions si les identifiants sont corrects
+        // Vérifier si les identifiants sont corrects
         $req = mysqli_query($con, "SELECT * FROM users WHERE email = '$email'");
         
-        // Vérifiez si la requête a réussi
+        // Vérifier si la requête a réussi
         if (!$req) {
             die('Erreur SQL : ' . mysqli_error($con));
         }
@@ -47,7 +47,7 @@ if (isset($_POST['button_con'])) {
                 $_SESSION['role_id'] = $user['role_id']; // Récupération du rôle
 
                 // Redirection en fonction du rôle
-                if ($user['role_id'] == 2) { // Supposons que 2 est l'ID du rôle admin
+                if ($user['role_id'] == 2) { // 2 est l'ID du rôle admin
                     header("Location: ../src/php/administrateur.php");
                 } else {
                     header("Location: ../src/php/load.php");
@@ -89,7 +89,7 @@ if (isset($_POST['button_con'])) {
                         <h2 class="text-center">CONNEXION</h2>
                         <form action="" method="POST" class="form_connexion_inscription" id="form"> 
                             <?php
-                            // Affichons le message qui dit qu'un compte a été créé
+                            // Afficher le message qui dit qu'un compte a été créé
                             if (isset($_SESSION['message'])) {
                                 echo $_SESSION['message'];
                             }
@@ -97,7 +97,7 @@ if (isset($_POST['button_con'])) {
 
                             <p class="message_error">
                                 <?php
-                                // Affichons l'erreur
+                                // Afficher l'erreur
                                 if (isset($error)) {
                                     echo $error;
                                 }

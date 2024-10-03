@@ -49,12 +49,12 @@ body {
     "header header header"
     "main main main"
     "footer footer footer";
-  width: 100%; /* Assure que le conteneur prenne toute la largeur */
+  width: 100%; 
 }
 
 .child {
-  width: 100%; /* Assure que chaque enfant prenne toute la largeur */
-  height: 100%; /* Tu peux ajuster cela selon tes besoins */
+  width: 100%; 
+  height: 100%; 
 }
 
 .child:nth-child(1) {
@@ -71,14 +71,14 @@ body {
 
 .card-custom {
   width: 100%;
-  max-width: 500px; /* Ou une autre valeur souhaitée */
+  max-width: 500px; 
 }
 
 
 .top-right {
     position: absolute;
-    top: 10px; /* Ajustez la distance du haut */
-    right: 10px; /* Ajustez la distance de la droite */
+    top: 10px; 
+    right: 10px; 
 }
 
 .full-width {

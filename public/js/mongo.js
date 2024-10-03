@@ -1,45 +1,30 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
-const path = require('path');
-
+const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-const url = 'mongodb://localhost:27017'; // URL de connexion
-const dbName = 'maBaseDeDonnees'; // Nom de votre base de données
+app.use(express.static('public'));
 
-// Route pour servir le fichier HTML
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Administrateur.php'));
-});
+// Connecter à MongoDB 
+mongoose.connect('mongodb://localhost:27017/Nombre_Downloads');
 
-// Route pour récupérer les données des fichiers
-app.get('/api/fichiers', async (req, res) => {
-    const client = new MongoClient(url);
-    
+// Définir un modèle pour la collection
+const Fichier = mongoose.model('Downloads_1', new mongoose.Schema({
+    nom: String,
+    nombre: Number
+}));
+
+// Route API pour récupérer les fichiers
+app.get('/api/files', async (req, res) => {
     try {
-        await client.connect(); // Connexion au serveur
-        console.log('Connecté avec succès au serveur MongoDB');
-        
-        const db = client.db(dbName); // Accès à la base de données
-        const shapefiles = await db.collection('fichiers_shapefile').find().toArray();
-        const jsonFiles = await db.collection('fichiers_json').find().toArray();
-
-        // Log des données récupérées
-        console.log({ shapefiles, jsonFiles });
-
-        // Envoi des données au format JSON
-        res.json({ shapefiles, jsonFiles });
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Erreur lors de la récupération des données.');
-    } finally {
-        await client.close(); // Fermeture de la connexion
+        const fichiers = await Fichier.find(); // Récupérer tous les fichiers de la base de données
+        res.json(fichiers); // Renvoyer les fichiers sous forme JSON
+    } catch (error) {
+        res.status(500).send('Erreur lors de la récupération des fichiers.');
     }
 });
 
-// Démarrage du serveur
+// Démarrer le serveur
 app.listen(port, () => {
-    console.log(`Serveur démarré à http://localhost:${port}`);
+    console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
 });

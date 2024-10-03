@@ -28,7 +28,7 @@ const dropZone = document.getElementById('drop-zone');
 
         function handleFiles(files) {
             if (files.length > 0) {
-                // Remplacer le texte de la zone de dépôt par le nom du fichier
+                
                 dropZone.textContent = files[0].name; 
             } else {
                 dropZone.textContent = 'Déposez vos fichiers ici ou cliquez pour sélectionner';
@@ -36,5 +36,5 @@ const dropZone = document.getElementById('drop-zone');
         }
 
         submitBtn.addEventListener('click', () => {
-            alert('Fichiers envoyés !'); // Remplacez ceci par votre logique d'envoi
+            alert('Fichiers envoyés !'); 
         });
